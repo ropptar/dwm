@@ -63,41 +63,43 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 
 static const Key keys[] = {
-	/* modifier							key				function	argument */
-	{ MODKEY, /* dmenu */				XK_d,			spawn,			{.v = dmenucmd } },
-	{ MODKEY, /* terminal */			XK_Return,		spawn,			{.v = termcmd } },
-	{ 0, /* prtscr */					XK_Print, 		spawn,			SHCMD("~/scripts/screenshot.sh") },
+	/* modifier										key				function	argument */
+	{ MODKEY, /* dmenu */							XK_d,			spawn,			{.v = dmenucmd } },
+	{ MODKEY, /* terminal */						XK_Return,		spawn,			{.v = termcmd } },
+	{ 0, /* prtscr */								XK_Print,		spawn,			SHCMD("~/scripts/screenshot.sh") },
 
-	{ MODKEY, /* bar on/off */			XK_b,	  		togglebar,		{0} },
-	{ MODKEY, /* next win */			XK_j,	  		focusstack,		{.i = +1 } },
-	{ MODKEY, /* prev win */			XK_k,	  		focusstack,		{.i = -1 } },
-	{ MODKEY,							XK_i,	  		incnmaster,		{.i = +1 } },
-	{ MODKEY,							XK_p,	  		incnmaster,		{.i = -1 } },
-	{ MODKEY, /* resize - */			XK_h,	  		setmfact, 		{.f = -0.05} },
-	{ MODKEY, /* resize + */			XK_l,	  		setmfact, 		{.f = +0.05} },
-	{ MODKEY|ShiftMask, /*make master*/	XK_m,	  		zoom,	  		{0} },
-	{ MODKEY, /* cycle last 2 tabs*/	XK_Tab,	  		view,	  		{0} },
-	{ MODKEY|ShiftMask,					XK_q,	  		killclient,		{0} },
-	{ MODKEY, /* tiling */				XK_t,	  		setlayout,		{.v = &layouts[0]} },
-	{ MODKEY|ShiftMask, /* floating */	XK_v,	  		setlayout,		{.v = &layouts[1]} },
-	{ MODKEY, /* monocle(fullscreen) */	XK_f,	  		setlayout,		{.v = &layouts[2]} },
-	{ MODKEY,							XK_v,	  		togglefloating,	{0} },
-	{ MODKEY, /* show all windows*/		XK_0,	  		view,			{.ui = ~0 } },
-	{ MODKEY|ShiftMask, /* tag win 0 */	XK_0,	  		tag,			{.ui = ~0 } },
-	{ MODKEY,							XK_comma, 		focusmon,		{.i = -1 } },
-	{ MODKEY,							XK_period,		focusmon,		{.i = +1 } },
-	{ MODKEY|ShiftMask,					XK_comma, 		tagmon, 		{.i = -1 } },
-	{ MODKEY|ShiftMask,					XK_period,		tagmon, 		{.i = +1 } },
-	TAGKEYS(							XK_1,			0)
-	TAGKEYS(							XK_2,			1)
-	TAGKEYS(							XK_3,			2)
-	TAGKEYS(							XK_4,			3)
-	TAGKEYS(							XK_5,			4)
-	TAGKEYS(							XK_6,			5)
-	TAGKEYS(							XK_7,			6)
-	TAGKEYS(							XK_8,			7)
-	TAGKEYS(							XK_9,			8)
-	{ MODKEY|ShiftMask, /* kill dwm */	XK_BackSpace,	quit,			{0} },
+	{ MODKEY, /* bar on/off */						XK_b,			togglebar,		{0} },
+	{ MODKEY, /* next win */						XK_j,			focusstack,		{.i = +1 } },
+	{ MODKEY, /* prev win */						XK_k,			focusstack,		{.i = -1 } },
+	{ MODKEY,										XK_i,			incnmaster,		{.i = +1 } },
+	{ MODKEY,										XK_p,			incnmaster,		{.i = -1 } },
+	{ MODKEY, /* resize - */						XK_h,			setmfact,		{.f = -0.05} },
+	{ MODKEY, /* resize + */						XK_l,			setmfact,		{.f = +0.05} },
+	{ MODKEY|ShiftMask, /*make master */			XK_m,			zoom,			{0} },
+	{ MODKEY, /* cycle last 2 tabs*/				XK_Ta			view,			{0} },
+	{ MODKEY|ShiftMask, /* kill app */				XK_q,			killclient,		{0} },
+
+	{ MODKEY, /* tiling */							XK_t,			setlayout,		{.v = &layouts[0]} },
+	{ MODKEY|ShiftMask, /* floating */ 				XK_v,			setlayout,		{.v = &layouts[1]} },
+	{ MODKEY, /* monocle(fullscreen) */				XK_f,			setlayout,		{.v = &layouts[2]} },
+	{ MODKEY|ControlMask, /* toggle win floating*/	XK_v,			togglefloating,	{0} },
+
+	{ MODKEY, /* show all windows*/					XK_0,			view,			{.ui = ~0 } },
+	{ MODKEY|ShiftMask, /* tag win 0 */				XK_0,			tag,			{.ui = ~0 } },
+	{ MODKEY,										XK_comma,		focusmon,		{.i = -1 } },
+	{ MODKEY,										XK_period,		focusmon,		{.i = +1 } },
+	{ MODKEY|ShiftMask,								XK_comma,		tagmon,			{.i = -1 } },
+	{ MODKEY|ShiftMask,								XK_period,		tagmon,			{.i = +1 } },
+	TAGKEYS(										XK_1,			0)
+	TAGKEYS(										XK_2,			1)
+	TAGKEYS(										XK_3,			2)
+	TAGKEYS(										XK_4,			3)
+	TAGKEYS(										XK_5,			4)
+	TAGKEYS(										XK_6,			5)
+	TAGKEYS(										XK_7,			6)
+	TAGKEYS(										XK_8,			7)
+	TAGKEYS(										XK_s,			8)
+	{ MODKEY|ShiftMask, /* kill dwm */				XK_BackSpace,	quit,			{0} },
 };
 
 /* button definitions */
