@@ -19,18 +19,19 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "S" };
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class		instance	title	tags mask	isfloating	monitor */
-	{ "librewolf",		NULL,		NULL,	1 << 1,		0,		-1 },
-	{ "TelegramDesktop",	NULL,		NULL,	1 << 2,		0,		-1 },
-	{ "Spotify",		NULL,		NULL,	1 << 3,		0,		-1 },
-	{ "steam",		NULL,		NULL,	1 << 4,		0,		-1 },
+	/* class			instance	title	tags mask	isfloating	monitor */
+	{ "librewolf",		NULL,		NULL,	1 << 1,		0,			-1 },
+	{ "TelegramDesktop",NULL,		NULL,	1 << 2,		0,			-1 },
+	{ "Spotify",		NULL,		NULL,	1 << 3,		0,			-1 },
+	{ "steam",			NULL,		NULL,	1 << 4,		0,			-1 },
+	{ "v2rayN",			NULL,		NULL,	1 << 8,		0,			-1 },
 };
 
 /* layout(s) */
@@ -76,7 +77,7 @@ static const Key keys[] = {
 	{ MODKEY, /* resize - */						XK_h,			setmfact,		{.f = -0.05} },
 	{ MODKEY, /* resize + */						XK_l,			setmfact,		{.f = +0.05} },
 	{ MODKEY|ShiftMask, /*make master */			XK_m,			zoom,			{0} },
-	{ MODKEY, /* cycle last 2 tabs*/				XK_Ta			view,			{0} },
+	{ MODKEY, /* cycle last 2 tabs*/				XK_T,			view,			{0} },
 	{ MODKEY|ShiftMask, /* kill app */				XK_q,			killclient,		{0} },
 
 	{ MODKEY, /* tiling */							XK_t,			setlayout,		{.v = &layouts[0]} },
