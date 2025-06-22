@@ -2,7 +2,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 5;        /* gaps between windows */
+static const unsigned int gappx     = 15;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
@@ -84,14 +84,15 @@ static const Key keys[] = {
 	{ MODKEY, /* resize - */						XK_h,			setmfact,		{.f = -0.05} },
 	{ MODKEY, /* resize + */						XK_l,			setmfact,		{.f = +0.05} },
 	{ MODKEY|ShiftMask, /*make master */			XK_m,			zoom,			{0} },
-	{ MODKEY, /* cycle last 2 tabs*/				XK_T,			view,			{0} },
+	{ MODKEY, /* cycle last 2 tabs*/				XK_Tab,			view,			{0} },
 	{ MODKEY|ShiftMask, /* kill app */				XK_q,			killclient,		{0} },
 
 	{ MODKEY, /* tiling */							XK_t,			setlayout,		{.v = &layouts[0]} },
 	{ MODKEY|ShiftMask, /* floating */ 				XK_v,			setlayout,		{.v = &layouts[1]} },
-	{ MODKEY, /* monocle(fullscreen) */				XK_f,			setlayout,		{.v = &layouts[2]} },
+	{ MODKEY|ShiftMask, /* monocle(fullscreen) */	XK_f,			setlayout,		{.v = &layouts[2]} },
+	{ MODKEY, /* actual fullscreen */				XK_f,			fullscreen,		{0} },
 	{ MODKEY, /* grid */							XK_g,			setlayout,		{.v = &layouts[3]} },
-	{ MODKEY, /* tatami */							XK_t,			setlayout,		{.v = &layouts[4]} },
+	{ MODKEY|ShiftMask, /* tatami */				XK_t,			setlayout,		{.v = &layouts[4]} },
 	{ MODKEY|ControlMask, /* toggle win floating*/	XK_v,			togglefloating,	{0} },
 
 	{ MODKEY, /* show all windows*/					XK_0,			view,			{.ui = ~0 } },
