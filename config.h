@@ -42,11 +42,16 @@ static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
+#include "grid.c"
+#include "tatami.c"
+
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+	{ "HHH",      grid },
+	{ "|+|",      tatami },
 };
 
 /* key definitions */
@@ -85,6 +90,8 @@ static const Key keys[] = {
 	{ MODKEY, /* tiling */							XK_t,			setlayout,		{.v = &layouts[0]} },
 	{ MODKEY|ShiftMask, /* floating */ 				XK_v,			setlayout,		{.v = &layouts[1]} },
 	{ MODKEY, /* monocle(fullscreen) */				XK_f,			setlayout,		{.v = &layouts[2]} },
+	{ MODKEY, /* grid */							XK_g,			setlayout,		{.v = &layouts[3]} },
+	{ MODKEY, /* tatami */							XK_t,			setlayout,		{.v = &layouts[4]} },
 	{ MODKEY|ControlMask, /* toggle win floating*/	XK_v,			togglefloating,	{0} },
 
 	{ MODKEY, /* show all windows*/					XK_0,			view,			{.ui = ~0 } },
@@ -93,6 +100,9 @@ static const Key keys[] = {
 	{ MODKEY,										XK_period,		focusmon,		{.i = +1 } },
 	{ MODKEY|ShiftMask,								XK_comma,		tagmon,			{.i = -1 } },
 	{ MODKEY|ShiftMask,								XK_period,		tagmon,			{.i = +1 } },
+ 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
+ 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
+ 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
 	TAGKEYS(										XK_1,			0)
 	TAGKEYS(										XK_2,			1)
 	TAGKEYS(										XK_3,			2)
