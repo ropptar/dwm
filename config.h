@@ -34,6 +34,7 @@ static const Rule rules[] = {
 	{ "Spotify",		NULL,		NULL,	1 << 3,		0,			-1 },
 	{ "steam",			NULL,		NULL,	1 << 4,		0,			-1 },
 	{ "v2rayN",			NULL,		NULL,	1 << 8,		0,			-1 },
+	{ "NoiseTorch",		NULL,		NULL,	1 << 8,		0,			-1 },
 };
 
 /* layout(s) */
@@ -69,6 +70,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_fg, "-sb", col_blue, "-sf", col_bg, NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *kbdcmd[]  = { "pkill", "-RTMIN+1", "dwmblocks", NULL };
 
 static const Key keys[] = {
 	/* modifier										key				function	argument */
@@ -101,9 +103,9 @@ static const Key keys[] = {
 	{ MODKEY,										XK_period,		focusmon,		{.i = +1 } },
 	{ MODKEY|ShiftMask,								XK_comma,		tagmon,			{.i = -1 } },
 	{ MODKEY|ShiftMask,								XK_period,		tagmon,			{.i = +1 } },
- 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
- 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
- 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
+ 	{ MODKEY,										XK_minus,		setgaps,		{.i = -1 } },
+ 	{ MODKEY,										XK_equal,		setgaps,		{.i = +1 } },
+ 	{ MODKEY|ShiftMask,								XK_equal,		setgaps,		{.i = 0 } },
 	TAGKEYS(										XK_1,			0)
 	TAGKEYS(										XK_2,			1)
 	TAGKEYS(										XK_3,			2)
@@ -113,6 +115,7 @@ static const Key keys[] = {
 	TAGKEYS(										XK_7,			6)
 	TAGKEYS(										XK_8,			7)
 	TAGKEYS(										XK_s,			8)
+	{ MODKEY, /* signal layout to chg dwmblocks */	XK_space,		spawn,			{.v = kbdcmd} },
 	{ MODKEY|ShiftMask, /* kill dwm */				XK_BackSpace,	quit,			{0} },
 };
 
