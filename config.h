@@ -7,8 +7,8 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Hack Nerd Font:size=12" };
-static const char dmenufont[]       = "Hack Nerd Font:size=12";
+static const char *fonts[]          = { "Hack Nerd Font:size=18" };
+static const char dmenufont[]       = "Hack Nerd Font:size=18";
 static const char col_bg[]       = "#282828";
 static const char col_bg1[]       = "#3c3836";
 static const char col_gray3[]       = "#665c53";
@@ -73,50 +73,51 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *kbdcmd[]  = { "pkill", "-RTMIN+1", "dwmblocks", NULL };
 
 static const Key keys[] = {
-	/* modifier										key				function	argument */
-	{ MODKEY, /* dmenu */							XK_d,			spawn,			{.v = dmenucmd } },
-	{ MODKEY, /* terminal */						XK_Return,		spawn,			{.v = termcmd } },
-	{ 0, /* prtscr */								XK_Print,		spawn,			SHCMD("~/scripts/screenshot.sh") },
+	/* modifier                                     key             function        argument */
+	{ MODKEY, /* dmenu */                           XK_d,           spawn,          {.v = dmenucmd } },
+	{ MODKEY, /* terminal */                        XK_Return,      spawn,          {.v = termcmd } },
+	{ 0, /* prtscr */                               XK_Print,       spawn,          SHCMD("~/scripts/screenshot.sh") },
 
-	{ MODKEY, /* bar on/off */						XK_b,			togglebar,		{0} },
-	{ MODKEY, /* next win */						XK_j,			focusstack,		{.i = +1 } },
-	{ MODKEY, /* prev win */						XK_k,			focusstack,		{.i = -1 } },
-	{ MODKEY,										XK_i,			incnmaster,		{.i = +1 } },
-	{ MODKEY,										XK_p,			incnmaster,		{.i = -1 } },
-	{ MODKEY, /* resize - */						XK_h,			setmfact,		{.f = -0.05} },
-	{ MODKEY, /* resize + */						XK_l,			setmfact,		{.f = +0.05} },
-	{ MODKEY|ShiftMask, /*make master */			XK_m,			zoom,			{0} },
-	{ MODKEY, /* cycle last 2 tabs*/				XK_Tab,			view,			{0} },
-	{ MODKEY|ShiftMask, /* kill app */				XK_q,			killclient,		{0} },
+	{ MODKEY, /* bar on/off */                      XK_b,           togglebar,      {0} },
+	{ MODKEY, /* next win */                        XK_j,           focusstack,     {.i = +1 } },
+	{ MODKEY, /* prev win */                        XK_k,           focusstack,     {.i = -1 } },
+	{ MODKEY, /* more wins to master area */        XK_i,           incnmaster,     {.i = +1 } },
+	{ MODKEY, /* less wins to master area */        XK_p,           incnmaster,     {.i = -1 } },
+	{ MODKEY, /* resize - */                        XK_h,           setmfact,       {.f = -0.05} },
+	{ MODKEY, /* resize + */                        XK_l,           setmfact,       {.f = +0.05} },
+	{ MODKEY|ShiftMask, /*make master */            XK_m,           zoom,           {0} },
+	{ MODKEY, /* cycle last 2 tabs*/                XK_Tab,         view,           {0} },
+	{ MODKEY|ShiftMask, /* kill app */              XK_q,           killclient,     {0} },
 
-	{ MODKEY, /* tiling */							XK_t,			setlayout,		{.v = &layouts[0]} },
-	{ MODKEY|ShiftMask, /* floating */ 				XK_v,			setlayout,		{.v = &layouts[1]} },
-	{ MODKEY|ShiftMask, /* monocle(fullscreen) */	XK_f,			setlayout,		{.v = &layouts[2]} },
-	{ MODKEY, /* actual fullscreen */				XK_f,			fullscreen,		{0} },
-	{ MODKEY, /* grid */							XK_g,			setlayout,		{.v = &layouts[3]} },
-	{ MODKEY|ShiftMask, /* tatami */				XK_t,			setlayout,		{.v = &layouts[4]} },
-	{ MODKEY|ControlMask, /* toggle win floating*/	XK_v,			togglefloating,	{0} },
+	{ MODKEY, /* tiling */                          XK_t,           setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|ShiftMask, /* floating */              XK_v,           setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|ShiftMask, /* monocle(fullscreen) */   XK_f,           setlayout,      {.v = &layouts[2]} },
+	{ MODKEY, /* actual fullscreen */               XK_f,           fullscreen,     {0} },
+	{ MODKEY, /* grid */                            XK_g,           setlayout,      {.v = &layouts[3]} },
+	{ MODKEY|ShiftMask, /* tatami */                XK_t,           setlayout,      {.v = &layouts[4]} },
+	{ MODKEY|ControlMask, /* toggle win floating*/  XK_v,           togglefloating, {0} },
+	{ MODKEY, /* assign master */                   XK_m,           zoom,           {0} },
 
-	{ MODKEY, /* show all windows*/					XK_0,			view,			{.ui = ~0 } },
-	{ MODKEY|ShiftMask, /* tag win 0 */				XK_0,			tag,			{.ui = ~0 } },
-	{ MODKEY,										XK_comma,		focusmon,		{.i = -1 } },
-	{ MODKEY,										XK_period,		focusmon,		{.i = +1 } },
-	{ MODKEY|ShiftMask,								XK_comma,		tagmon,			{.i = -1 } },
-	{ MODKEY|ShiftMask,								XK_period,		tagmon,			{.i = +1 } },
- 	{ MODKEY,										XK_minus,		setgaps,		{.i = -1 } },
- 	{ MODKEY,										XK_equal,		setgaps,		{.i = +1 } },
- 	{ MODKEY|ShiftMask,								XK_equal,		setgaps,		{.i = 0 } },
-	TAGKEYS(										XK_1,			0)
-	TAGKEYS(										XK_2,			1)
-	TAGKEYS(										XK_3,			2)
-	TAGKEYS(										XK_4,			3)
-	TAGKEYS(										XK_5,			4)
-	TAGKEYS(										XK_6,			5)
-	TAGKEYS(										XK_7,			6)
-	TAGKEYS(										XK_8,			7)
-	TAGKEYS(										XK_s,			8)
-	{ MODKEY, /* signal layout to chg dwmblocks */	XK_space,		spawn,			{.v = kbdcmd} },
-	{ MODKEY|ShiftMask, /* kill dwm */				XK_BackSpace,	quit,			{0} },
+	{ MODKEY, /* show all windows*/                 XK_0,           view,           {.ui = ~0 } },
+	{ MODKEY|ShiftMask, /* tag win 0 */             XK_0,           tag,            {.ui = ~0 } },
+	{ MODKEY,                                       XK_comma,       focusmon,       {.i = -1 } },
+	{ MODKEY,                                       XK_period,      focusmon,       {.i = +1 } },
+	{ MODKEY|ShiftMask,                             XK_comma,       tagmon,         {.i = -1 } },
+	{ MODKEY|ShiftMask,                             XK_period,      tagmon,         {.i = +1 } },
+ 	{ MODKEY,                                       XK_minus,       setgaps,        {.i = -1 } },
+ 	{ MODKEY,                                       XK_equal,       setgaps,        {.i = +1 } },
+ 	{ MODKEY|ShiftMask,                             XK_equal,       setgaps,        {.i = 0 } },
+	TAGKEYS(                                        XK_1,           0)
+	TAGKEYS(                                        XK_2,           1)
+	TAGKEYS(                                        XK_3,           2)
+	TAGKEYS(                                        XK_4,           3)
+	TAGKEYS(                                        XK_5,           4)
+	TAGKEYS(                                        XK_6,           5)
+	TAGKEYS(                                        XK_7,           6)
+	TAGKEYS(                                        XK_8,           7)
+	TAGKEYS(                                        XK_s,           8)
+	{ MODKEY, /* signal layout to chg dwmblocks */  XK_space,       spawn,           {.v = kbdcmd} },
+	{ MODKEY|ShiftMask, /* kill dwm */              XK_BackSpace,   quit,            {0} },
 };
 
 /* button definitions */
